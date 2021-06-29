@@ -1,0 +1,363 @@
+how spring boot works
+	1) spring emphazises "convention" over "configuration"
+
+	in spring f/w
+		we have configuration xml file or configuration class that specifies 
+			component scan base package =
+	in spring boot
+		if we follow the convention, that we create classes directly inside base package, or sub package of base package, then we dont' need to configure.
+
+		base package is the package where ...Application.java (with main method)
+
+
+	2) spring boot introduces "starter" dependencies which groups lot of dependencies together
+		improves managability
+		starter-web
+			spring core, spring context, spring context support
+
+	3) initializer that creates and configures the project easily that can be downloaded and imported
+		this is called bootstrapping
+
+	4) @SpringBootApplication
+		groups lot of annotations inside
+
+		@SpringBootConfiguration	@Configuration
+
+	5) application.properties
+		server.port=8080
+		server.context-path=/account		
+
+		http://localhost:8080/account
+
+		================================================================
+Annotations used in our project
+	jpa repository
+	hibernate 
+
+	@Entity			means, this class is mapped to a table in the database 	ORM	
+
+			introduced in javax.persistenc package in the EJB, hibernate, JPA, spring data JPA
+
+	@Table			not compulsory but when the table name is different from the class name
+
+	@Id			marks the filed(s) as primary key	
+
+	@GeneratedValue		this cannot be used on fields other than integer family
+	
+	@Column			not mandatory but when the property of the class is different named as from column
+
+	@Lob			marks this field as large object	(byte[] in java)
+
+	Employee
+		id
+		name
+		dob
+@Transient	sdf		SimpleDateFormat		
+
+		
+
+	hibernate validator dependency
+		@Size
+		@Min
+		@Max
+		@NotNull		with ref types not on primitive types
+		@NotEmpty		with collections
+		@NotBlank		with strings
+		@Email
+
+
+	@Repository		is a kind of @Component. we can autowire this in service
+	@Service		is a kind of @Component. we can autowire this in controller
+	@Controller	or	@RestController
+		@RestController		=	@Controller	+	@ResponseBody
+	
+
+	@Configuration
+	@ComponentScan
+
+
+
+===================================================================================
+	Serialization
+		an object of a class is stored in a stream (ex: file)
+		ObjectOutputStream oos
+		oos.writeObject(emp)
+
+		emp is an object of Employee.
+		If Employee class does not implement Serializable means, we cannot store object of Employee in a file
+
+		employee has sdf		we dont want to store this in file
+
+		transient SimpleDateFormat sdf;
+
+	volatile
+		ex:			volatile int age;
+		multiple threads access this variable, means, they do not store the value of this var in their cache
+		they take value directly from the main memory.
+
+		volatile = thread safe variable
+		synchronized block
+		synchronized method			are also thread safe
+
+		thread safe means NO 2 threads access a resource at a time
+
+
+===================================================
+exception handling in the project
+	throws
+	try-catch
+
+	ideally when we create a component or service, we are not supposed to handle the exception
+	we use throws
+	because, the caller has to handle
+
+	1) the component or service is independent of the type of project
+		may be an MVC project
+		GUI application using JFrame
+		web application
+		mobile application
+	all these applications access the same component and service via controller
+
+		if you handle the exception, you may display error message in syso which is not going to be displayed in mobile app, or web app?
+		so handling exception is left to the end user
+
+	in JSP they can handle or redirect the exception
+	using error page
+	or
+	exception handler controller advice
+
+================================================================================================
+spring boot security
+	programmative security
+	declarative security
+
+	OAuth2	and JWT
+	OAuth2 is open authentication f/w
+	only because of OAuth2 we are able to use third party authentication service
+		facebook
+		gmail
+		github
+		
+	Single Sign On		is possible using OAuth2	
+
+	why?????
+		it is not possible to retain session information in a REST API
+
+		RestController
+			5 methods
+
+	while calling 1st method, you can authenticate the user. but the identity is not remembered when user calls second method
+
+	in Controller
+	HttpSession
+		session.setAttribute("user",user);		until you session.invalidate();
+		the session is remembered
+
+	
+	i am running the project
+	in browser 
+		http://localhost:8080/branch
+
+	a login page comes first
+
+	in a spring boot project
+		as soon as you add spring security dependency 
+
+	you run the project
+		any url you enter in browser, login page only comes first
+
+	use can login using this login page
+	henceforth any other request to any url will be allowed
+	
+	but when i access the urls from "postman"?
+	where will the login page come????????
+
+	so i need to pass the authentication using a token
+
+		JWT
+
+		JSON web token
+
+============================================
+overriding
+overloading
+============================================
+div vs span
+	div is block		every div comes in separate line
+	span is inline		can be a part of a line also
+
+aws services
+
+	IAAS
+	SAAS
+	PAAS
+
+	Continous Integration 
+	Elastic Beanstalk
+	EC2
+	ECS	and 	EKS
+	RDS	Relational Database Service
+
+What is continous Integration:		CI
+------------------------------
+	is implemented in aws using code pipeline
+	we create a project
+		we deploye that project in aws
+	later, we modify or develop the project
+		again we deploy the project in aws
+	the role holders are different
+		who develop the project
+		who deploy the project in aws
+
+	the deployer wants to provide an easy method for you to deploy the application whenever changes are made
+
+	THE deployer creates a code pipeline in aws, that integrates git hub repository to the application in aws
+	so if you push your project to the git repository whenever changes are made, 
+	git notifies the aws and the changes are updated in aws 
+
+	
+Elastic Beanstalk
+-------------------
+	when you deploy "jar" or "war" to aws,
+	use elastic beanstalk
+
+ECS:
+-----
+	Elastic Container Service
+		when you deploye a docker image into aws
+
+EKS:
+-----
+	Elastic Kubernetes Service
+		when we deploy a docker image in cluster
+
+MSK:
+----
+	Managed Kafka Services 
+		producer - consumer				pub-sub model
+
+	topics	producer posts
+	consumers receive the topics
+
+	docker-compose.yml		
+
+docker-compose.yml		
+	whenever you want to deploy multiple services together
+	i) MSK
+	ii) when we deploy a spring boot app and mysql together in docker
+		both images should run together
+
+
+	IAAS		we run spring boot app in our computer. but the benefit of cluster is obtained when we deploy our app in aws.
+			EKS		this is IAAS
+	SAAS		I dont have mysql in my pc. i use aws RDS 		SAAS
+	PAAS		java platform		tomcat platform
+		we chose java platform for "jar"
+		we chose tomcat platform for "war"
+
+
+	Platform
+		it should allow us to develop the project or deploy the project
+
+	SAAS
+			Office365
+
+========================================================================
+Hibernate
+	f/w allows us to do ORM
+	writing SQL statement for very usual requirements are taken care by the f/w
+	hibernate cache
+		if we update an entity
+		again and again without any change, that query ("UPDATE") is not executed unnecessarily in db
+
+	HQL
+	JPA QL
+
+
+======================================
+Demo1			AWS		
+
+1) we are going to deploy a spring boot application in aws
+	create an application in Elastic beanstalk
+	create environment as
+		java		for jar
+		tomcat		for war
+	
+2) choose sample application and create the env and app
+3) deploy our jar file in the environment
+4) go to env configuration
+	database
+	
+  and create a mysql sever and specify username and password
+	root
+	rootuser
+5) apply 		it will take time to update the environment
+
+
+@Entity
+public class Branch
+
+then the table name will automatically becomes 		"branch"		b is small notice that
+
+
+---------------steps to create mysql database in RDS---------------
+1) open the application environment
+2) go to configuration
+3) last option is "database"
+4) create a mysql server
+5) aFTEr done
+	go to configuration of mysql
+	1) security groups
+	2) edit inbound 
+	3) set
+		all traffic		(instead of all tcp)
+		all region		(instead of custom)
+
+now check the configuration of rds
+	copy the end point		use it instead of "localhost"
+	3306 is same
+
+	if you connect in mysql work bench you can see a database created "ebdb"
+	
+	
+-------------------------------
+deploy the application after making changes in application properties.
+---------------------------------
+
+MVC project that is going to access this REST API using "feign" client
+
+
+deploy this mvc project in docker
+that will access rest api from aws
+
+
+
+Feign client is used to access rest api from mvc project
+	feign client will allow you to map the methods in a rest api to an interface methods
+
+refer project 
+	jag-mvc-2
+
+for feign client steps
+
+
+========================
+Let us deploy our mvc project in DOCKER
+
+for that our project should contain Dockerfile 		in same location where pom.xml is present
+
+go to location where Dockerfile is present
+
+build an image
+	i) docker build -t jag-docker-demo-1 .
+tag it to a docker hub resource	(we created now)
+	ii) docker tag jag-docker-demo-1 jagindia/firstrepo
+push the same
+	iii) docker push jagindia/firstrepo
+
+
+
+
+
+
+
