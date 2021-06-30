@@ -53,3 +53,139 @@ Google
 	GCP
 Amazon
 	AWS
+
+
+
+
+
+Single Page application
+	
+Branch
+
+Customer
+Product
+
+
+
+applying 
+
+HTML
+CSS
+Bootstrap
+Javascript
+
+java
+spring mvc
+
+spring data jpa
+
+spring security
+
+aws
+
+password encryption
+email otp
+
+form validation
+
+exception handler 
+
+
+
+-----------------------------------
+
+entity class			(model package)
+repository
+service
+controller
+
+mvc forms validations
+bindingresult
+
+exception handler
+
+for errors, usually, spring boot will look for /error			whitelable error message
+
+specific errors
+	handler
+
+
+jstl	core
+spring form
+
+bootstrap
+	
+spring security
+
+password encryption
+
+	SHA1
+		secure hashing algorithm
+
+	one way enc
+
+signing up
+	pwd:		rama
+
+	controller
+		converts plain text "rama" into cypher text		"ablksdjfksdjfklsdjflksdjflksdjflkjf"
+
+	in db		cyper text is stored
+
+login in
+	pwd:		rama
+	controller
+		converts plain text "rama" into cypher text"		"ablksdjfksdjfklsdjflksdjflksdjflkjf"
+
+	compare "ablksdjfksdjfklsdjflksdjflksdjflkjf"		with db value	"ablksdjfksdjfklsdjflksdjflksdjflkjf"
+
+	matching
+
+we do not require decryption at all.
+	SHA1 has no decryption key at all. this is one way encryption
+
+in gmail, if you forgot password,
+	it will never show your old password. because, it cannot decrypt
+
+	it will only allow you to reset password. means, new one
+
+java method that accepts string and returns string
+
+
+
+sending email from java program:
+1) create a gmail account for your project. 
+	this account will send email to any user.
+	when i sign up, i give my email address. This will be "to" address.
+
+	"from" address is always our project email address
+2) in gmail account settings
+	enable 	"less secure app access"
+
+
+
+sign up form
+
+First Name
+Last Name
+user name
+password
+confirm password
+email address
+phone
+Next button
+in next screen, 
+	"We have sent an email otp to abcd@gmail.com (their email address)
+
+enter to confirm
+
+what is otp
+
+Math.Random()*100000
+
+6 digit number
+
+cookies
+
+submit the otp
+
