@@ -1,0 +1,55 @@
+AWS Elastic beanstalk
+RDS mysql database
+	configured the server to allow all traffic on all regions
+	access from mysql workbench
+
+Spring boot MVC project
+	that access the REST API deployed in aws
+	using feign client
+
+Deployed the mvc project 
+	in a docker 	(docker hub)
+
+	
+
+
+40 minutes	preparation
+40 minutes	demos
+40 minutes	presentation
+
+
+OAuth2
+JWT
+
+REST api
+	no session management
+
+	how can we retain the user identity across multiple method calls?
+
+there are third party authentication services
+	GMAIL
+	Facebook
+
+why not we use their services for SSO
+	OAuth2			Open Authentication 2.0
+	
+spring security supports OAuth2
+
+
+
+SecurityAutoConfiguration	
+
+
+
+User
+UserDetails
+UserDetailsService
+
+
+
+Microsoft
+	Azure
+Google
+	GCP
+Amazon
+	AWS
