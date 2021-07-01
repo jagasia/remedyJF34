@@ -1,0 +1,480 @@
+AWS
+	CI		Continuous Integration
+		Code Pipeline	
+
+
+MSK	
+	Managed Kafka Services
+
+	pub/sub
+		producer/ consumer
+
+		topics
+
+	docker-compose.yml
+
+	whenever we want to run multiple services, together in docker, we use
+	docker-compose.yml
+
+1) run a mvc project and mysql both images together
+	docker-compose.yml
+
+
+2) run producer and consumer together in MSK
+	docker-componse.yml
+
+
+
+ECS
+EKS
+
+
+We are deploying a docker image in aws
+
+
+
+image
+container
+
+when you run an image, it runs in a container
+
+	docker images
+is same as	docker image ls
+
+	docker ps
+is same as 	docker container ls
+
+to remove an image
+	docker rmi imagename
+
+but when image is running as container, we need to remove container and then remove image.
+but we still can force remove image
+
+	docker rmi -f imagename
+
+to remove container
+	docker rm containername
+
+
+====================
+Normalization
+	avoid redundancy
+	Normal forms
+		1NF
+		2NF
+		3NF
+
+	in every form, the table might be divided into multiple tables
+	if data is present in one location, it will be consistent. if same data is present in multiple locations
+		ex:
+			Attendance
+				associate id		name
+				23232323		raja
+				23232323		Rajan
+
+
+Views
+	without table?		cannot be created without tables.
+				cannot be created without query
+		inline views
+			sub queries are also called as inline view. inline views are not stored in db.
+
+	DMLS on view?
+		there is a view called "vw1"
+		can we do
+			INSERT INTO vw1 ......
+			UPDATE INTO vw1 ......
+
+	DML is possible on view sometimes.
+		DML on view is allowed only if
+			that affects column(s) of only 1 underlying table
+
+	a view is created on a single table. 
+	all mandatory columns are coverd by the view query
+	insert is possible. Update is possible. delete is possible.
+	this is simple view
+
+	a view is created using join
+		update is possible but only when that update affect column(s) of 1 table.
+
+
+
+JOINS
+	
+composite key
+	combination of columns to act as candiate for primary key
+
+billing
+
+same bill no
+diff product no
+
+1	989889
+1	7878787
+1	89797
+
+
+
+candidate key		=		candidate for primary key
+
+alternate key		=		candidate key when primary key already exists
+
+primary key vs unique key
+
+	unique does not allow duplicates
+	unique allow null
+
+	how many null allowed by unique?
+	
+	null in unique
+
+foreign key constraints
+	ON DELETE 
+		SET NULL
+		RESTRICT		Default
+		CASCADE
+
+diff between DELETE, DROP and TRUNCATE
+	
+Clustered vs non clustered index
+
+clustered index is created when we create a primary key
+
+the records are physically stored in the order of clustered index
+
+library
+	search book based on title
+
+index sheet
+	sorted by title
+
+find the book in index
+	go to the location and get the book
+
+index is in particular order
+books are also present in that order
+	this index is clustered index
+
+books can be in only 1 order
+
+1 clustered index only is possible
+
+1
+9
+4
+8
+2
+
+1
+2
+4
+8
+9
+
+
+
+
+
+
+
+
+
+Set does not allow duplicates
+	here,
+		set allows 1 null
+		another null is not accepted. rejected
+
+
+
+
+<div class="header">
+<div class="footer">
+
+html5
+
+<header>
+
+<footer>
+
+
+<p id="p1"></p>
+<div></div>
+<span></span>
+
+document.getElementById("p1").innerText="<b>This is a para</b>";
+
+<b>This is a para</b>		is printed inside the paragraph p1
+
+
+document.getElementById("p1").innerHTML="<b>This is a para</b>";
+
+This is para	is displayed in bold inside paragraph p1
+
+
+
+
+Last version of Java script
+	ES6
+
+	ES5
+
+	ES?		ECMA script
+	ECMA		European Computer Manufacturers Association
+
+
+every time when a new version of js is introduced, a new version of browser also was required
+
+they introduced a new language TypeScript that can be translated into javascript ES6
+
+Object oriented
+
+inheritance
+interfaces
+constructors
+
+how will you convert a js object into JSON?
+	JSON.stringify(obj);
+how will you convert a JSON into a js object?
+	var obj=JSON.parse(str);
+
+
+a javascript function can call a servlet
+	using 
+		ajax		Asynchronous Javascript And XMl
+
+	response we get is JSON STRING
+		{"KEY":"VALUE"}
+
+	THIS string should be converted into object
+		JSON.parse(str);
+
+jquery
+	.ajax
+
+===================javascript
+introduction
+
+a=5;
+b=2;
+5 power 2	=	25
+** (power)	x**y	=>		x power y
+
+inline	
+embedded
+external
+
+<p style="text-align:center">this is para</p>	this is inline
+<p onclick="alert('hello world')">this is also a para</p>
+
+
+
+data types, operators and programming constructs
+var x;
+let x=20;
+
++
+-
+*
+/
+%		mod		5%4	=	reminder is 1
+		when we want values only within a range
+	there are 4 options in a fan regulator
+	0, 1, 2, 3, 0, 1, 2, 3, 0
+
+for
+	i=0 	i++
+	
+0
+1
+2
+3
+0
+1
+2
+3 
+
+      var x=5;
+      var y=2;
+      // alert(math.power(x,y));
+      // alert(pow(x,y));
+      alert(x**y);
+      alert('hi this is also ehllo world');
+
+unary operators	
++
+-
+
+i want to find the square root of 4	
+
+a**b
++a
+
+
+<<			left shift operator
+	4	100
+	2	10
+x=2;		0000 0010	(8 bit representation)
+>> 1		0000 0001	division 
+x=2;		0000 0010
+x<<1;		0000 0100	multiplication
+
+	x<<1		10	after shifting 1 to left	100 which is equal to 4
+>>
+&		AND
+|		OR
+~		NOT
+^		XOR		True if both sides are different
+,	x=a+b,c+d
+
+&	vs	&&		short cut
+||	vs	||
+
+AND
+===
+TRUE AND FALSE	=	FALSE
+TRUE AND TRUE	=	TRUE
+FALSE AND TRUE	=	FALSE
+FALSE AND FALSE =	FALSE
+
+
+NOT
+AND
+OR
+
+, is very low precedence
+https://javascript.info/operators
+
+precedence of operators. if not, use () to group the operations separately.
+bodmas theorem		*/ are performed before +-
+a+b*c
+
+
+if
+if else
+if else if else
+{}	when  there are more than 1 line in the true/else part
+
+nested if 
+	if condition is true	another if
+	if condition is false 	another if
+
+if with logical operators
+if(x<0 || x>100)
+	...invalid
+
+switch case
+while
+do while
+for loop
+for each loop
+
+
+
+
+<DIV>
+</DIV>
+
+
+I can write some text inside div.		document.getElementById("result").innerHTML="some text";
+
+that some text should be:
+var x='
+<table>
+	<tr>
+		<td>1</td><td>*</td><td>2</td><td>=</td><td>2</td>
+	</tr>
+</table>';
+
+
+difference between while and do-while
+do while will execute the loop body atleast once...	do while condition decides second or further iteration
+while will check condition and execute if true
+
+
+display multiplication table using for loop
+
+
+for loop	
+	for(init;condition;re-init)
+
+for each loop		enhanced for loop
+	we use when there are arrays
+	
+
+in javascript, an object can be denoted as a string:
+	{sno:1,firstName:'rama',lastName:'krishna'}		Javascript Object Notation	(JSON)
+
+JSON.parse			converts string into object
+JSON.stringify			converts object into string
+
+we are going to create front end and also back end. Between these to ends, the data will be flowing.
+
+INPUT	and supply to the back end and back end will store / manipulate the database
+back end will read data from the database and send to front end
+
+the data which is in transit, can be JSON
+ARRAY of values
+	[1,2,3,4,5,6]	
+
+ARRAY of objects
+	[{sno:1,firstName:'rama',lastName:'krishna'},
+	{sno:1,firstName:'rama',lastName:'krishna'},
+	{sno:1,firstName:'rama',lastName:'krishna'},
+	{sno:1,firstName:'rama',lastName:'krishna'}]
+
+objects can have	
+	properties
+	methods/function
+	event
+
+	ex:	text box is an object
+		properties:		value, style, id, name, class, etc
+		methods/functions:	forEach		items
+		events:			change, keyup, keydown, focus, blur
+
+
+	<input type=range />
+
+
+1) bind an event to an event handler function using 
+	i) event=function
+	ii) addEventListener("event", function);
+
+	add multiple events for one object
+	removeEventListener
+
+
+
+task:
+	create a html file with following ui:
+	3 checkboxes.	(there should be 3 functions)
+	1 button
+
+	events are added to the button only. when? when the checkboxes are checked.
+	all events are button click event only.
+
+	when i click the button, 
+		either all 3 functions are called. or few of the functions are called.
+		or none of the functions called.
+		This is BASED ON how many check boxes i clicked.
+
+	when the check boxes are clicked,  the function corresponding to that should be subscribed.
+	when check boxes are unchecked, the function should be unsubscribed.
+
+	hint:	subscribe?	addEventListener
+	      unsubscribe?	removeEventListener
+		you can add multiple functions to one event.
+
+	so when i click button, the subscribed functions should be called.
+
+	clue:
+		when i tick the checkbox, subscribe.
+		when i untick the checkbox, unsubscribe.
+
+
+
+document		represent the root element of the document.
+Task:
+	1) create a html file with a form. and a button. on clicking the button, the function should be able to traverse through the child elements of the form. and display them in console/alert.
+	2) Create a html file with one button. on click, the javascript function should be able to create an input form using DOM. 
+	
