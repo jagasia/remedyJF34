@@ -1,0 +1,295 @@
+java platform
+	JIT compiler
+	compilation process in java
+		2 stage of compilation
+		compiler translates java source code into byte code.
+		this byte code is independent of platform
+		during execution, 
+			this byte code is again translated into machine native code (binary)
+		this translation is done by JIT Compiler
+
+	java 
+		jdk
+		jre
+			both are platform dependent. Means, different jdk jre are there for different platform
+		
+	jdk is for developers
+	jre is for running the program		(which is already compiled)
+
+	JIT	just in time		means, only the portion of byte code is translated when required. not entire 
+	class loader
+	garbage collector
+		are part of JVM
+	JVM when the java byte code is executed
+	
+	JRE provides runtime env		which includes JVM
+
+language fundamentals
+	if
+	while
+	for
+	for each		enhanced for loop
+	switch
+	break vs continue
+	
+	
+Object Oriented Programming
+	inheritance
+		multiple inheritance is not possible in java.
+		if someone says, implement multiple interfaces that = multiple inheritance 
+		when a class inherits multiple classes, then we get the benefit from both super classes
+		This cannot be equated to 2 interfaces, which do not have any code inside the methods.
+
+		but the same benefit of multiple inheritance (2 base classes) can be achieved by using interfaces.
+		i don't suggest 2 interfaces instead of 2 super classes. I am not telling that.
+
+		
+class A implements I
+	display
+class B implements I
+	display
+
+interface I
+
+I i=new A();	
+i.display()			output as defined in class A
+
+i=new B();
+i.display();			output as defined in class B
+
+i can say, multiple inheritance benefit is obtained using 1 interface
+
+
+
+	abstraction		public methods
+	encapsulation		hiding. "en" looks positive sounds like "has" "contains"
+			cover the variables and methods inside a case "class"	wrap
+	polymorphism
+			static
+				overloading
+			dynamic
+				overriding
+
+Multithreading
+	2 ways 
+		implements Runnable
+		extends Thread
+
+	Thread class is definitely used
+
+	class A implements Runnable
+
+	Thread t=new Thread(new A());
+
+	what is the exception thrown by the sleep method of a Thread class?
+		InterruptedException
+
+		Thread.sleep();
+
+	sync
+		join()		will prevent new threads from starting. until the currently running threads end.
+		wait
+		notify
+		notifyAll
+		yield
+Streams
+	Reader			character
+	InputStream		byte/binary
+
+	BufferedReader				System.in 		is input stream (binary
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	BufferedInputStream
+
+	Scanner was introduced in jdk 1.5 only
+
+	How do you store java objects in a file
+	ObjectOutputStream
+		thge object class should implement Serializable
+
+	class can have lot of properties, if any of the property should not be serialized (stored in file)
+	then declare it as "transient"
+	
+Collections
+	what is generic collection?
+	all collection classes were object time
+		similar to ArrayList<Object>	is same as ArrayList
+	2 types of collections
+	List		Ordered 	order in which elements are added (not asc or desc order at all)
+			allows duplicates
+			allows sorting	
+			ListIterator works only for List category
+			Collections.sort() works only for List category
+	Set		set doesn't remember the order in which elements are added (LinkedHashSet remembers)
+			never allows re arranging elements after they are added
+			if still you want to sort a hashset, do one thing.
+			ArrayList<T> temp=new ArrayList<>(hs);		//contents of hs is now present in arraylist
+			sort the array list. 
+
+			Set is unordered. is it random? NO.
+			HashSet
+				order is based on hashCode()
+			TreeSet
+				order is based on Comparable or Comparator
+			LinkedHashSet
+				order is based on the order we add elements
+
+	method(ArrayList)
+		returns array list
+
+	this method should remove duplicate elements
+			HashSet<T> hs=new HashSet<>(alist);		//duplicates are removed. but order is lost
+			TreeSet.....					//duplicates are removed, but sorted
+			LinkedHashSet....				//perfect solution
+
+			from LinkedHashSet, add result into alist and return alist
+
+		ListIterators
+			can mover forward and also backward
+			next()		hasNext()
+			previous()	hasPrevious()
+		list iterator as name says, cannot be work other than list category
+
+	Set has	
+		DescendingIterator
+
+	Map is an application of Set	
+		
+	EntrySet
+		set of Entry
+	Entry
+		key	value
+
+	for each loop
+
+	iterators are proven to be efficient for iteration
+
+	for each loop
+		inside the loop if you remove an element, then it may cause,
+			ConcurrentModificationException
+
+		this is because, it is affecting the boundary condition to end loop
+	iterators provide remove method
+	Iterator
+		next()
+		hasNext()
+		remove()		removes current element in iteration
+
+	hashtable vs hashmap
+
+	both are key-value pair
+		but hashtable is synchronized.	it will lock threads and allow one thread at a time
+	legacy classes are synchronized
+		Vector
+		Hashtable		look at the "t" is small
+
+	StringBuffer is also synchronized
+		reverse a string?
+
+	sb.reverse();			returns the reversed string.
+
+	String has adv
+		reg exp
+
+	String email="";
+		email.matches(reg ex)		very simple 
+
+	p=Pattern.compile("reg ex")
+	p.matches		true/false
+
+	extract portions matching the reg exp
+
+	1) to check if the string matches reg exp pattern or not
+	2) to extract portions that match a pattern		
+
+JDBC
+	ResultSet			concurrency scrollable
+	RowSet		
+	ResultSetMetadata		to get info about how many columns, column name, type
+	DatabaseMetadata		to get db version product name driver name 
+Lambdas and Stream API
+	when can you use lambda?
+		we can use lambda only when there is a need to implement functional interface
+		suppose, if an interface has 2 methods (abstract)
+		how will you implement those 2 methods using lambda?
+			we cannot use lambda in that case.
+		an interface containing only 1 abstract method can be implemented using lambda
+		what is the name of that interface?
+			Functional interface
+				is an interface that has only 1 abstract method
+		ex:
+			Runnable
+			
+
+		Serializable		does not have any method inside
+			this is called as "Marker" interface
+
+	spring boot
+	aws
+	spring cloud
+	
+Parallel programming
+
+
+whats new in java 8
+	interfaces can have
+		abstract methods
+		static methods
+		default methods
+
+	what is the difference between static and default method in interface?
+
+	static cannot be overriden. it can be accessed <<intefacename>>.staticmethod();
+	default method provides default implementations. if you dont' override, then default behavior is there
+	if you override, then overridden behavior is there
+
+lambdas are very much used in Stream API
+	list=countries.stream()
+	.filter()
+	.sorted()
+	.collect(...asList
+
+generics
+	introduced in jdk 1.5
+
+
+@Transient
+	non persistent.		in db table, i dont want this field to be a column
+
+
+
+Aggregation
+Composition
+	Aggregation is like independence
+	A		B		they aggregate a relationship
+
+	Composition means, 
+	A has B			and B cannot exist independently
+
+Employee do Project
+
+class Employee
+{
+	List<Project>
+}
+
+
+Customer
+Product
+
+Sales
+	Customer
+	Product
+
+	
+
+
+RESTRICT
+SET NULL
+CASCADE
+
+
+
+FOREIGN KEY
+	allows null
+	allows duplicates
+
