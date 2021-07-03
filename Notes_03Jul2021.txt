@@ -1,0 +1,66 @@
+Scalability	
+Elasticity	=	Elastic Scalability
+
+ability to adapt to growing or reducing demands
+	scalability with existing infra
+	elasticity means provision to increase the infra also or decrease the infra also
+
+	Server		i can add or remove hard disks		(mainframe)
+
+	servlet	
+	spring boot			scalability
+
+already huge infra is available in aws
+	we can keep adding or removing infra as required
+
+Elastic Compute Cloud			EC2
+
+	Elastic Beanstalk		.jar 	.war	deployment
+	ECS				single container		docker image
+	EKS				cluster of containers		docker image
+
+
+
+Cloud
+	Microsoft	azure
+	Google		GCP
+	Amazon		AWS
+
+
+
+servlets
+	web container
+
+container
+	in servlet	special jvm
+	in docker	running image
+	in aws
+		container
+			it provides a runtime env for our application to run
+
+how i am able to run multiple applications with same port number
+	different containers
+
+each application deployed in elastic beanstalk, has a environment
+	vm
+
+	container is a system that has everything required by our application to run.
+		runtime
+		libraries
+		
+
+container
+	
+
+CI	Continuous Integration
+		Code Pipeline		-	integrates 	github with beanstalk
+
+	every time i do changes in my project, i dont need to login to aws for re deployment.
+	i just push the changes to git hub
+		git is integrated to ebs via code pipeline
+
+	
+
+docker run 
+docker ps		docker container ls
+docker images 		docker image ls	
