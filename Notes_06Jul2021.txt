@@ -1,0 +1,276 @@
+Difference between string and string buffer?
+	String is immutable
+	StringBuffer allows editing values inside.
+	If we try to modify String then it is created newly as another object
+	
+	StringBuffer 
+		reverse()	
+
+	StringBuffer is synchronized
+
+	
+diff between	hashmap and treemap and hashtable
+	dont know
+
+spring boot annotations		6 annotations
+	@SpringBootApplication
+	@EnableAutoConfiguration
+	@EnableWebMvc
+	@EnableWebSecurity
+	@SpringBootConfiguration
+
+controller	vs	Rest controller
+	RestController	=	Controller + ResponseBody
+
+
+	how a lob is mapped using JPA repository
+
+	@Lob
+	private byte[] pic;
+
+
+join types in sql
+	inner join
+	left outer join
+	right outer join
+	full join
+	self join
+	cross join
+	non equi join		when there is no common column or matching values
+		EMPLOYEE
+			EID NAME SALARY MID
+		JOB_GRADE
+			DESIGNATION 	MIN_SAL		MAX_SAL
+	
+		Display EID, NAME, SALARY, DESIGNATION
+
+		select e.eid, e.name, e.salary, jg.designation
+		from employee e join job_grade jg
+		on e.salary between jg.min_sal and jg.max_sal
+
+	Theta join
+		we dont use "JOIN" statement but we use , 
+		select ... from tabl1, tabl2
+		where t1.col1=t2.col1(+)				left outer join
+		in theta join we cannot do full outer join
+		
+		
+		
+normalization
+	scientific steps to design a database
+	how many tables, what should be columns and relationships, etc are arrived scientifically
+	
+	normal forms
+		each step results in a normal form		1NF, 2NF, 3NF, BCNF
+
+	1NF
+		aim to have only 1 value in each cell in the table
+
+		Rama Krishna is a name
+		we can split it into firstName, lastName
+		address can be split into many columns
+		First year, First semester, Sub1 marks
+
+	2NF	
+		identifying the attributes that are functionally dependent on the whole table
+		retain them and remove others and form other tables
+
+	3NF	
+		identify the attributes that are functionally dependent on the primary key 
+		retain them and remove others
+
+		CITY	STATE	COUNTRY
+		Chennai	TN	IN			State and Country are dependent on the city. so they must be present in a table city master only not in Employee. Because, state and country are not dependent on employee
+
+		
+How to sort the characters of a String?
+		str.toCharArray();			char []
+		Arrays.sort(carr);
+		new String(carr);
+				
+sort a string using map
+	
+map is useful for finding the occurrance of each letter in a string
+a	2
+b	1
+c	0
+d	3
+
+
+what is maven?
+	build tool
+
+ant
+
+
+we created jar using
+	jar command
+
+we had manifest file
+	jar 
+
+eclipse made it easy to create jar file
+
+it is possible even if we dont have eclipse, we can create jar file using "mvn" command
+
+maven provides 	
+	pom.xml
+		java version
+		jar/war
+		dependencies
+
+when i upload war or project zip
+	it does not contain jar files		
+	
+maven can run tests
+
+maven provides very good project folder structure
+
+centralized repository
+	mvnrepository
+
+sonar
+	code quality
+		insights of the coding that helps developer to improve good practises
+
+dependency injection
+	constructor based injection
+	setter based injection
+
+	A class has object of another class (that is called dependency)
+	that object, that dependency can be injected via constructor or setter
+
+	if we do not provide DI, then we are tightly coupling a fixed type of dependency
+
+class Car
+{
+	Sony audio;			//tightly coupled
+}
+
+class Car
+{
+	Audio audio;			//interface. now this is loosely coupled. means, sony/pioneer can be injected
+	constr...
+	sett...
+}
+
+
+
+If that injection is done by user based on their prefences, then we have done Inversion of Control 	IOC
+
+
+MOCKITO
+	testing f/w that creates mocks and test the mocks instead of consuming a service
+
+	Mock
+	when then return
+
+@JsonIgnore
+	an object of java class is translated into JSON string, we want to ignore a field, then that field is 
+
+	byte[] pic;			is very large data
+
+	json displays one object for several lines. difficult to count the number of objects
+
+	
+
+
+what is autowiring?
+
+	can be done using xml configuration or annotations
+
+	can be used for dependency injection
+
+		by name or type
+
+	when there is only 1 qualified bean available, it is auto wired
+	
+class Car
+{
+	@Qualifer(value="sony")
+	@Autowired
+	Audio audio;
+}
+
+
+@Component("sony")
+class Sony implements Audio
+
+then only sony object will be injected to Car
+
+no issues
+
+class Pioneer implements Audio
+
+autowire cannot decide which implementation of Audio should be injected into the Car
+
+this is where Qualifier
+
+
+
+can 2 methods have same signature but different return type?	
+	No
+
+	int sum(int , int)
+	float sum(int , int)		nogt allowed
+
+	sum(2,3)		which of the above will execute?	conflict. so error
+
+can 2 methods have different signature and different return type?
+	Yes
+
+	the return type can be same or different does not matter. 
+
+
+
+overriding
+	super class
+	sub class
+
+sub class method
+	same signature
+	same return type
+
+
+covariance		
+
+Parent
+	Parent getInstance()
+
+
+Child
+	Child getInstance()
+
+
+@Override 
+	then the above will give error
+
+
+
+Parent p=new Child();			//late binding allowed. 
+
+
+overriding rules:
+	same signature
+	same or covariant return type
+	sub class method cannot be less accessible			visibility cannot be reduced
+	sub class method cannot throw new exceptions			throws
+
+
+interface Person
+{
+	void speak();			//public by default even if we do not mention public
+}
+
+class Student implements Person
+{
+	public void speak()
+	{
+		System.out.println("Student speaks");
+	}
+}
+
+main
+	Student rama=new Student();
+	rama.speak();				//what will be the output?
+
